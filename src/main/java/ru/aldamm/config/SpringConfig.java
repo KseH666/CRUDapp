@@ -47,6 +47,11 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    /* fixme
+     *  Хардкодить значения не надо, обычно выносят в конфиг.
+     *  Т.к. в случае, если значения изменятся(например, при деплое вместо тестового стенда на прод),
+     *  тут придётся править код.
+     */
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");

@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+// todo я бы использовал lombok, даёт возможность не писать кучу бойлер кода(геттеры, сеттеры и т.д.)
 public class Person {
     private int id;
     @NotEmpty(message = "Please enter valid name")
