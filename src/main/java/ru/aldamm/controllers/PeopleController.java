@@ -10,6 +10,7 @@ import ru.aldamm.models.Person;
 import javax.validation.Valid;
 
 @Controller
+// todo обычно именуют во множественном числе, слеши вроде не обязательно ставить в начале везде
 @RequestMapping("/people")
 public class PeopleController {
     private final PersonDAO personDAO;
