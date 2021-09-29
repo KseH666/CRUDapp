@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private int ID = 0;
+//    private int ID = 0;
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -29,16 +29,8 @@ public class PersonDAO {
         return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
     }
 
-    // fixme похоже, что метод называется скорее insert
-    public void save(Person person) {
-        /* todo
-         *  ++i - не thread-safe, т.к. он не атомарный.
-         *  Соответственно, если одновременно в разных потоках пользователи иницииуруют сохранение результат будет не однозначный.
-         *  В целом, обычно используют sequences в БД для таких целей.
-         *  Если при этом будет необходимость получить сгенерированное значение ключа, то можно посмотреть в сторону
-         *  KeyHolder или SimpleJdbcInsert
-         */
-        jdbcTemplate.update("INSERT INTO Person VALUES(?,?,?,?)",++ID, person.getName(), person.getAge(), person.getEmail());
+    public void insert(Person person) {
+        jdbcTemplate.update("INSERT INTO Person VALUES(nextval('key_id'),?,?,?)", person.getName(), person.getAge(), person.getEmail());
     }
 
     public void update(int id, Person updatedPerson) {
