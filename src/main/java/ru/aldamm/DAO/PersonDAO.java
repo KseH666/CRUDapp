@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.aldamm.models.Person;
+
 import java.util.List;
 
 
@@ -27,11 +28,11 @@ public class PersonDAO {
     }
 
     public void insert(Person person) {
-        jdbcTemplate.update("INSERT INTO Person VALUES(nextval('key_id'),?,?,?)", person.getName(), person.getAge(), person.getEmail());
+        jdbcTemplate.update("INSERT INTO Person VALUES(nextval('key_id'),?,?,?,?)", person.getFirstName(), person.getAge(), person.getEmail(), person.getSecondName());
     }
 
     public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE Person SET name=?, age=? , email=? WHERE id=? ", updatedPerson.getName(), updatedPerson.getAge(), updatedPerson.getEmail(), id);
+        jdbcTemplate.update("UPDATE Person SET firstName=?, secondName=?, age=? , email=? WHERE id=? ", updatedPerson.getFirstName(), updatedPerson.getSecondName(), updatedPerson.getAge(), updatedPerson.getEmail(), id);
     }
 
     public void delete(int id) {

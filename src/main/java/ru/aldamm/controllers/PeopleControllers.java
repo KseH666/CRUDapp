@@ -1,16 +1,15 @@
 package ru.aldamm.controllers;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.aldamm.DAO.PersonDAO;
 import ru.aldamm.models.Person;
+
 import javax.validation.Valid;
 
 @Controller
-
 @RequestMapping("people")
 public class PeopleControllers {
     private final PersonDAO personDAO;

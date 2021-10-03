@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -30,7 +31,6 @@ public class SpringConfig implements WebMvcConfigurer {
     private String nameUser;
     @Value("${password}")
     private String password;
-
     private final ApplicationContext applicationContext;
 
     @Autowired

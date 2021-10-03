@@ -6,17 +6,26 @@
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="name"> Enter name:</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    <label for="firstName"> Enter first name:</label>
+    <br/>
+    <input type="text" th:field="*{firstName}" placeholder="first name" id="firstName"/>
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name error</div>
+    <br/>
+    <label for="secondName"> Enter second name:</label>
+    <br/>
+    <input type="text" th:field="*{secondName}" placeholder="second name" id="secondName"/>
+    <div style="color: red" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">Name error</div>
     <br/>
     <label for="age"> Enter age:</label>
-    <input type="text" th:field="*{age}" id="age"/>
+    <br/>
+    <input type="text" th:field="*{age}" placeholder="age" id="age"/>
     <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name error</div>
     <br/>
     <label for="email"> Enter email:</label>
-    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <input type="text" th:field="*{email}" placeholder="email" id="email"/>
     <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</div>
+    <br/>
     <br/>
     <input type="submit" value="Update!">
 </form>
