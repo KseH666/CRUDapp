@@ -11,7 +11,6 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-//    private int ID = 0;
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -19,13 +18,11 @@ public class PersonDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // fixme в контексте дао слоя, на мой взгляд не совсем прозрачное название
-    public List<Person> index() {
+    public List<Person> getAll() {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
     }
 
-    // fixme аналогично
-    public Person show(int id) {
+    public Person getId(int id) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
     }
 

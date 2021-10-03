@@ -1,10 +1,12 @@
 package ru.aldamm.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,12 +17,19 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
 
-
-
 @Configuration
+@PropertySource("classpath:application.properties")
 @ComponentScan("ru.aldamm")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
+    @Value("${driverClassName}")
+    private String driverClassName;
+    @Value("${url}")
+    private String url;
+    @Value("${nameUser}")
+    private String nameUser;
+    @Value("${password}")
+    private String password;
 
     private final ApplicationContext applicationContext;
 
@@ -47,17 +56,12 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    /* fixme
-     *  Хардкодить значения не надо, обычно выносят в конфиг.
-     *  Т.к. в случае, если значения изменятся(например, при деплое вместо тестового стенда на прод),
-     *  тут придётся править код.
-     */
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("2333295");
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(nameUser);
+        dataSource.setPassword(password);
         return dataSource;
     }
 
