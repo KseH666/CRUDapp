@@ -21,13 +21,13 @@ public class PeopleControllers {
 
     @GetMapping()
     public String getIndex(Model model) {
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", personDAO.getAll());
         return "people/index";
     }
 
     @GetMapping("{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDAO.getId(id));
         return "people/show";
     }
 
@@ -47,7 +47,7 @@ public class PeopleControllers {
 
     @GetMapping("{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDAO.getId(id));
         return "people/edit";
     }
 
